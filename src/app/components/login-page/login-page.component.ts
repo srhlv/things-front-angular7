@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss',
-  providers: []
-]
+  styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  onClickSubmit(form) {
-    console.log(form)
+  onClickSubmit(user: User) {
+    this.authService.signin(user).add(()=> {
+      console.log('Navigating to items')
+      return this.router.navigate(['items'])
+    })
   }
-
 }
