@@ -18,4 +18,14 @@ export class AuthService {
         error => console.log(error)
       )
   }
+
+  signup(user: User): Subscription {
+    return this.http.post<User>(`${SETTINGS.API.URL}/auth/signup`, user)
+      .subscribe(
+        user => {
+          localStorage.token = user.token;
+        },
+        error => console.log(error)
+      )
+  }
 }

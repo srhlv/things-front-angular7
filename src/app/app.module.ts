@@ -8,10 +8,12 @@ import { ItemsListPageModule } from './components/items-list-page/items-list-pag
 import { CoreModule } from './services/core.module';
 import { LoginPageModule } from './components/login-page/login-page.module';
 import { SharedModule } from './shared/shared.module';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { SignupPageModule } from './components/signup-page/signup-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 
     ItemsListPageModule,
     LoginPageModule,
+    SignupPageModule,
     SharedModule
   ],
   bootstrap: [AppComponent]
