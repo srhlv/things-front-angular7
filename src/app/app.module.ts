@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { ItemsListPageModule } from './components/items-list-page/items-list-page.module';
 import { CoreModule } from './services/core.module';
 import { LoginPageModule } from './components/login-page/login-page.module';
-import { SharedModule } from './shared/shared.module';
-import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { SharedModule } from './components/shared/shared.module';
 import { SignupPageModule } from './components/signup-page/signup-page.module';
 
 @NgModule({
