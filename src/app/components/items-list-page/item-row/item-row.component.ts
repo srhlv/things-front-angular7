@@ -5,7 +5,7 @@ import { Item } from 'src/app/models/item';
 @Component({
     selector: '[item-row]',
     templateUrl: './item-row.component.html',
-    styleUrls: []
+    styleUrls: ['./item-row.component.scss']
 })
 export class ItemRowComponent implements OnInit {
     @Input() item: Item;
