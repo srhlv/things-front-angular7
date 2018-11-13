@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ItemsService } from 'src/app/services/items.service';
+import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/models/item';
 
 @Component({
@@ -7,11 +6,8 @@ import { Item } from 'src/app/models/item';
     templateUrl: './item-row.component.html',
     styleUrls: ['./item-row.component.scss']
 })
-export class ItemRowComponent implements OnInit {
+export class ItemRowComponent{
     @Input() item: Item;
 
     constructor() { }
-
-    ngOnInit() {
-    }
 }

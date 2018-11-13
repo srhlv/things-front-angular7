@@ -1,0 +1,29 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col upload-btn-wrapper">
+            <img *ngIf="!itemImage" src="assets/image_placeholder.png" class="img-thumbnail" (click)="fileInput.click()"/>
+            <img *ngIf="itemImage" src mediaPreview [media]="itemImage" class="img-thumbnail" (click)="fileInput.click()"/>
+            
+            <span class="hide-file-input">
+                <input type="file" #fileInput  (change)="onPickFile($event.target.files)"/>
+            </span>
+        </div>
+        <div class="col">
+            <form #addItem="ngForm" (ngSubmit)="onSaveItem(addItem.value)">
+                <div class="form-group">
+                    <label class="text-dark" for="title">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter item's title"
+                        ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter item's description"
+                        ngModel>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
