@@ -9,6 +9,10 @@ import { CoreModule } from './services/core.module';
 import { LoginPageModule } from './components/login-page/login-page.module';
 import { SharedModule } from './components/shared/shared.module';
 import { SignupPageModule } from './components/signup-page/signup-page.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule} from '@ngrx/store-devtools'
+import { reducers, effects } from './store';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,13 @@ import { SignupPageModule } from './components/signup-page/signup-page.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('things', reducers),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature(effects),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
 
     ItemsListPageModule,
     LoginPageModule,

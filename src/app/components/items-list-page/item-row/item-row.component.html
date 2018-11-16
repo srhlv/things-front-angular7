@@ -1,5 +1,6 @@
 <ng-template #popImage><img [src]="item.imageUrl" class="img-thumbnail" /></ng-template>
 
 <td><img [src]="item.imageUrl" class="small-img img-thumbnail" [ngbPopover]="popImage" placement="bottom"/></td>
-<td class="align-middle">{{item.name}}</td>
+<td class="align-middle">{{item.title}}</td>
 <td class="align-middle">{{item.description}}</td>
+<td class="align-middle"><span (click)="onDeleteItem()" class="link-like">X</span></td>

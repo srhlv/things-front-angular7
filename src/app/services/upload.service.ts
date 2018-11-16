@@ -18,3 +18,20 @@ export class UploadService {
         return this.http.post(SETTINGS.CLOUDINARY.URL, formData).pipe(map((result: any) => result.url))
     }
 }
+
+/* 
+uploadAndProgress(files: File[]){
+    console.log(files)
+    var formData = new FormData();
+    Array.from(files).forEach(f => formData.append('file',f))
+    
+    this.http.post('https://file.io', formData, {reportProgress: true, observe: 'events'})
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.percentDone = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.uploadSuccess = true;
+        }
+    });
+  }
+*/

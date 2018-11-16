@@ -1,56 +1,3 @@
-<!-- <ng-template #popAddItem>
-  <div class="row">
-    <div class="col">
-      <img src="assets/image_placeholder.png" class="img-thumbnail"/>
-    </div>
-    <div class="col">
-        <form #addItem="ngForm" (ngSubmit)="onSaveItem(addItem.value)">
-            <div class="form-group">
-              <label class="text-dark" for="title">Title</label>
-              <input type="text" class="form-control" name="title" id="title" placeholder="Enter item's title" ngModel>
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <input type="text" class="form-control" name="description" id="description" placeholder="Enter item's description" ngModel>
-            </div>
-            <div class="row justify-content-center">
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </form>
-    </div>
-  </div>  
-</ng-template>
-
-
-<button class="btn btn-outline-primary" [ngbPopover]="popAddItem"  placement="bottom" >Add Item</button> -->
-<!-- <button class="btn btn-outline-primary" (click)="isAddItemCollapsed = !isAddItemCollapsed">Add Item</button> -->
-
-<!-- <div id="addItemCollapse" [ngbCollapse]="isAddItemCollapsed" class="row mb-5">
-  <div class="col-2">
-    <img src="assets/image_placeholder.png" class="img-thumbnail" />
-  </div>
-  <div class="col-9">
-    <form #addItem="ngForm" (ngSubmit)="onSaveItem(addItem.value)">
-      <div class="form-group">
-        <label class="text-dark" for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Enter item's title" ngModel>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" name="description" id="description" placeholder="Enter item's description"
-          ngModel>
-      </div>
-      <div class="form-group float-right">
-          <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-      <div class="col justify-content-center">
-      
-      </div> 
-    </form>
-  </div>
-</div> -->
-
-
 <div class="row justify-content-end p-3 pt-4">
   <div class="col">
     <h3>Your items</h3>
@@ -67,13 +14,14 @@
       <thead>
         <tr>
           <th scope="col" style="width: 20%">Image</th>
-          <th scope="col" style="width: 40%">Name</th>
-          <th scope="col" style="width: 40%">Description</th>
+          <th scope="col" style="width: 35%">Title</th>
+          <th scope="col" style="width: 35%">Description</th>
+          <th scope="col" style="width: 10%"></th>
         </tr>
 
       </thead>
       <tbody>
-        <tr item-row [item]="item" *ngFor="let item of items"></tr>
+        <tr item-row [item]="item" (deleteItem)="deleteItem($event)" *ngFor="let item of items$ | async"></tr>
       </tbody>
     </table>
 

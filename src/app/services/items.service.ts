@@ -4,7 +4,7 @@ import SETTINGS from '../../app.settings'
 import { Item } from '../models/item';
 import { Observable } from 'rxjs';
 import { UploadService } from './upload.service';
-import { map, mapTo, flatMap } from 'rxjs/operators';
+import { flatMap } from 'rxjs/operators';
 
 @Injectable()
 export class ItemsService {
@@ -19,7 +19,12 @@ export class ItemsService {
     return this.uploadService
       .uploadImage(image)
       .pipe(
-        flatMap(url => this.http.post(`${SETTINGS.API.URL}/items`, Object.assign(item, { imageUrl: url })))
+        flatMap(url => this.http.post(`${SETTINGS.API.URL}/items`, { ...item, imageUrl: url }))
       )
   }
+
+  deleteItem(item: Item){
+    return this.http.delete(`${SETTINGS.API.URL}/items/${item.id}`)
+  }
 }
+

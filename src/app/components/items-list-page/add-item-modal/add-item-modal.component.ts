@@ -1,9 +1,8 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import SETTINGS from '../../../../app.settings'
-import { HttpClient } from '@angular/common/http';
 import { ItemsService } from "src/app/services/items.service";
 import { Item } from "src/app/models/item";
+import { FormGroup, Validators, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
     selector: 'add-item-modal',
@@ -11,15 +10,31 @@ import { Item } from "src/app/models/item";
     styleUrls: ['./add-item-modal.component.scss']
 })
 export class AddItemModalComponent {
-    constructor(public activeModal: NgbActiveModal, private itemsService: ItemsService) { }
-
     itemImage: File;
+    addItemForm: FormGroup;
+    title = new FormControl('', Validators.required);
+    description = new FormControl('');
+    submitted: boolean = false;
 
-    onSaveItem(item: Item) {
-        this.itemsService.createItem(item, this.itemImage).subscribe(result => {
-            console.log(result)
-            this.activeModal.close()
-        })
+
+    constructor(public activeModal: NgbActiveModal, private itemsService: ItemsService, fb: FormBuilder) {
+        this.addItemForm = fb.group({
+            'title': this.title,
+            'description': this.description
+        });
+
+        console.log(this.addItemForm);
+
+    }
+
+    onSaveItem() {
+        this.submitted = true;
+        if (this.itemImage && this.addItemForm.valid){
+            this.itemsService.createItem(this.addItemForm.value, this.itemImage).subscribe(result => {
+                console.log(result)
+                this.activeModal.close()
+            })
+        }
     }
 
     onPickFile(files: File[]) {
