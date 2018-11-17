@@ -50,6 +50,31 @@ export function reducer(state: ItemsState = initialState, action: fromItems.Item
                 loaded: false
             }
         }
+        case fromItems.ADD_ITEM_SUCCESS:
+        case fromItems.DELETE_ITEM_FAIL: {
+            const item = action.payload;
+
+            const entities = {
+                ...state.entities,
+                [item.id]: item
+            }
+
+            return {
+                ...state,
+                entities
+            }
+        }
+        case fromItems.ADD_ITEM_FAIL:
+        case fromItems.DELETE_ITEM_SUCCESS: {
+            const item = action.payload;
+            const entities = {...state.entities};
+            delete entities[item.id];
+
+            return {
+                ...state,
+                entities
+            }
+        }
     }
 
     return state;

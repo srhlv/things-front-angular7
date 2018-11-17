@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { ItemsService } from "src/app/services/items.service";
-import { Item } from "src/app/models/item";
 import { FormGroup, Validators, FormControl, FormBuilder } from "@angular/forms";
+import * as fromStore from '../../../store'
+import { Store } from "@ngrx/store";
 
 @Component({
     selector: 'add-item-modal',
@@ -17,23 +17,24 @@ export class AddItemModalComponent {
     submitted: boolean = false;
 
 
-    constructor(public activeModal: NgbActiveModal, private itemsService: ItemsService, fb: FormBuilder) {
+    constructor(
+        public activeModal: NgbActiveModal,
+        private fb: FormBuilder,
+        private store: Store<fromStore.ThingsState>
+    ) {
         this.addItemForm = fb.group({
             'title': this.title,
             'description': this.description
         });
-
-        console.log(this.addItemForm);
-
     }
 
     onSaveItem() {
         this.submitted = true;
-        if (this.itemImage && this.addItemForm.valid){
-            this.itemsService.createItem(this.addItemForm.value, this.itemImage).subscribe(result => {
-                console.log(result)
-                this.activeModal.close()
-            })
+        if (this.itemImage && this.addItemForm.valid) {
+            const payload = { item: this.addItemForm.value, image: this.itemImage }
+            this.store.dispatch(new fromStore.AddItem(payload));
+
+            this.activeModal.close();
         }
     }
 

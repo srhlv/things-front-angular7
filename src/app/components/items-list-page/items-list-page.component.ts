@@ -27,6 +27,6 @@ export class ItemsListPageComponent implements OnInit {
   }
 
   deleteItem(item: Item){
-    this.itemsService.deleteItem(item).subscribe(result => console.log)
+    this.store.dispatch(new fromStore.DeleteItem(item));
   }
 }

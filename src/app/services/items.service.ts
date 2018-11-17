@@ -4,7 +4,7 @@ import SETTINGS from '../../app.settings'
 import { Item } from '../models/item';
 import { Observable } from 'rxjs';
 import { UploadService } from './upload.service';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ItemsService {
@@ -19,7 +19,7 @@ export class ItemsService {
     return this.uploadService
       .uploadImage(image)
       .pipe(
-        flatMap(url => this.http.post(`${SETTINGS.API.URL}/items`, { ...item, imageUrl: url }))
+        switchMap(url => this.http.post(`${SETTINGS.API.URL}/items`, { ...item, imageUrl: url }))
       )
   }
 
