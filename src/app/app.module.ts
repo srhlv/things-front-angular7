@@ -4,15 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ItemsListPageModule } from './components/items-list-page/items-list-page.module';
+import { ItemsListPageModule } from './containers/items-list-page/items-list-page.module';
 import { CoreModule } from './services/core.module';
-import { LoginPageModule } from './components/login-page/login-page.module';
-import { SharedModule } from './components/shared/shared.module';
-import { SignupPageModule } from './components/signup-page/signup-page.module';
+import { LoginPageModule } from './containers/login-page/login-page.module';
+import { SharedModule } from './containers/shared/shared.module';
+import { SignupPageModule } from './containers/signup-page/signup-page.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools'
 import { reducers, effects } from './store';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,9 @@ import { reducers, effects } from './store';
     StoreModule.forFeature('things', reducers),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature(effects),
-    StoreDevtoolsModule.instrument({
+    !environment.production? StoreDevtoolsModule.instrument({
       maxAge: 25
-    }),
+    }): [],
 
     ItemsListPageModule,
     LoginPageModule,

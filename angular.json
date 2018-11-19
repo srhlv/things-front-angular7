@@ -139,5 +139,8 @@
       }
     }
   },
-  "defaultProject": "things-front-angular7"
+  "defaultProject": "things-front-angular7",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
