@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools'
 import { reducers, effects } from './store';
 import { environment } from 'src/environments/environment';
+import { ThingsStoreModule } from './store/things-store.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    StoreModule.forRoot({}),
+    ThingsStoreModule,
+    /* StoreModule.forRoot({}),
     StoreModule.forFeature('things', reducers),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature(effects),
     !environment.production? StoreDevtoolsModule.instrument({
       maxAge: 25
-    }): [],
+    }): [], */
 
     ItemsListPageModule,
     LoginPageModule,

@@ -1,11 +1,11 @@
-import { reducer, initialState } from './login-page.reducer';
+import { authReducer, initialState } from './auth.reducer';
 
 describe('LoginPage Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = authReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });

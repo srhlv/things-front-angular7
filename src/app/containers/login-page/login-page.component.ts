@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { ThingsState } from 'src/app/store';
+import { LoginSubmit } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -10,15 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<ThingsState>) { }
 
   ngOnInit() {
   }
 
   onClickSubmit(user: User) {
-    this.authService.signin(user).add(()=> {
-      console.log('Navigating to items')
-      return this.router.navigate(['items'])
-    })
+    this.store.dispatch(new LoginSubmit(user));
   }
 }

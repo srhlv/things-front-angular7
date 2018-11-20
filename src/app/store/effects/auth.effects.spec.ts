@@ -2,21 +2,21 @@ import { TestBed, inject } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { LoginPageEffects } from './login-page.effects';
+import { AuthEffects } from './auth.effects';
 
 describe('LoginPageEffects', () => {
   let actions$: Observable<any>;
-  let effects: LoginPageEffects;
+  let effects: AuthEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        LoginPageEffects,
+        AuthEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.get(LoginPageEffects);
+    effects = TestBed.get(AuthEffects);
   });
 
   it('should be created', () => {

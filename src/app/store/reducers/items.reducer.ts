@@ -1,5 +1,5 @@
-import * as fromItems from '../actions/items.action'
 import { Item } from "src/app/models/item";
+import { ItemsAction, ItemActionTypes } from "../actions/items.action";
 
 export interface ItemEntities {
     [id: number]: Item
@@ -17,16 +17,16 @@ export const initialState: ItemsState = {
     loaded: false
 }
 
-export function reducer(state: ItemsState = initialState, action: fromItems.ItemsAction): ItemsState {
+export function itemsReducer(state: ItemsState = initialState, action: ItemsAction): ItemsState {
     switch (action.type) {
-        case fromItems.LOAD_ITEMS: {
+        case ItemActionTypes.LOAD_ITEMS: {
             return {
                 ...state,
                 loading: true,
                 loaded: false
             }
         }
-        case fromItems.LOAD_ITEMS_SUCCESS: {
+        case ItemActionTypes.LOAD_ITEMS_SUCCESS: {
             const items = action.payload;
             const entities = items.reduce((entities: ItemEntities, item) => {
                 return {
@@ -43,15 +43,15 @@ export function reducer(state: ItemsState = initialState, action: fromItems.Item
                 entities
             }
         }
-        case fromItems.LOAD_ITEMS: {
+        case ItemActionTypes.LOAD_ITEMS: {
             return {
                 ...state,
                 loading: false,
                 loaded: false
             }
         }
-        case fromItems.ADD_ITEM_SUCCESS:
-        case fromItems.DELETE_ITEM_FAIL: {
+        case ItemActionTypes.ADD_ITEM_SUCCESS:
+        case ItemActionTypes.DELETE_ITEM_FAIL: {
             const item = action.payload;
 
             const entities = {
@@ -64,8 +64,8 @@ export function reducer(state: ItemsState = initialState, action: fromItems.Item
                 entities
             }
         }
-        case fromItems.ADD_ITEM_FAIL:
-        case fromItems.DELETE_ITEM_SUCCESS: {
+        case ItemActionTypes.ADD_ITEM_FAIL:
+        case ItemActionTypes.DELETE_ITEM_SUCCESS: {
             const item = action.payload;
             const entities = {...state.entities};
             delete entities[item.id];
