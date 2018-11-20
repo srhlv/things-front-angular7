@@ -16,6 +16,7 @@ export class AuthEffects {
     map((action: AuthSubmit) => action.payload),
     switchMap((user: User) => {
       return this.authService.signin(user).pipe(
+        tap(user => { localStorage.token = user.token }),
         tap(() => this.router.navigate(['items'])),
         map(user => new AuthSuccess(user)),
         catchError(error => of(new AuthFail(error)))
