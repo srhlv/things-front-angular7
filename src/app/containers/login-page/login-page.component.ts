@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Store } from '@ngrx/store';
 import { ThingsState } from 'src/app/store';
-import { LoginSubmit } from '../../store/actions/auth.actions';
+import { AuthSubmit } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -17,6 +17,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   onClickSubmit(user: User) {
-    this.store.dispatch(new LoginSubmit(user));
+    this.store.dispatch(new AuthSubmit(user));
   }
 }

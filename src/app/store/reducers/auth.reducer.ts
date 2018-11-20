@@ -17,7 +17,7 @@ export const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActions): AuthState {
   switch (action.type) {
 
-    case AuthActionTypes.LoginSuccess: {
+    case AuthActionTypes.AuthSuccess: {
       const user = action.payload;
 
       return {
@@ -27,7 +27,7 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
       };
     }
 
-    case AuthActionTypes.LoginFail: {
+    case AuthActionTypes.AuthFail: {
       const error = action.payload;
 
       console.log('Error while login', error);

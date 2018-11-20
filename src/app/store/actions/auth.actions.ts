@@ -2,27 +2,27 @@ import { Action } from '@ngrx/store';
 import { User } from 'src/app/models/user';
 
 export enum AuthActionTypes {
-  LoginSubmit = '[Auth] Login Submitted',
-  LoginSuccess = '[Auth] Login Successful',
-  LoginFail = '[Auth] Login Failed'
+  AuthSubmit = '[Auth] Login Submitted',
+  AuthSuccess = '[Auth] Login Successful',
+  AuthFail = '[Auth] Login Failed'
 }
 
-export class LoginSubmit implements Action {
-  readonly type = AuthActionTypes.LoginSubmit;
+export class AuthSubmit implements Action {
+  readonly type = AuthActionTypes.AuthSubmit;
 
   constructor(public payload: User){}
 }
 
-export class LoginSuccess implements Action {
-  readonly type = AuthActionTypes.LoginSuccess;
+export class AuthSuccess implements Action {
+  readonly type = AuthActionTypes.AuthSuccess;
 
   constructor(public payload: User){}
 }
 
-export class LoginFail implements Action {
-  readonly type = AuthActionTypes.LoginFail;
+export class AuthFail implements Action {
+  readonly type = AuthActionTypes.AuthFail;
 
   constructor(public payload: any){}
 }
 
-export type AuthActions = LoginSubmit | LoginSuccess | LoginFail;
+export type AuthActions = AuthSubmit | AuthSuccess | AuthFail;
