@@ -6,9 +6,10 @@ import { AppRoutingModule } from '../../app-routing.module';
 
 import { CommonModule } from '@angular/common';
 import { MediaPreviewDirective } from './media-preview.directive';
+import { AuthFormComponent } from './auth-form.component';
 
 @NgModule({
-  declarations: [MediaPreviewDirective],
+  declarations: [MediaPreviewDirective, AuthFormComponent],
   imports: [
     CommonModule,
 
@@ -21,6 +22,7 @@ import { MediaPreviewDirective } from './media-preview.directive';
   exports: [
     CommonModule,
     MediaPreviewDirective,
+    AuthFormComponent,
 
     AppRoutingModule,
     FormsModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
+import { Store } from '@ngrx/store';
+import { User } from '../../models/user';
+import { SignupSubmit, ThingsState } from '../../store';
 
 @Component({
   selector: 'app-signup-page',
@@ -9,14 +9,12 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./signup-page.component.scss']
 })
 export class SignupPageComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<ThingsState>) { }
 
   ngOnInit() {
   }
 
   onClickSubmit(user: User) {
-    this.authService.signup(user).add(()=> {
-      return this.router.navigate(['items'])
-    })
+    this.store.dispatch(new SignupSubmit(user));
   }
 }

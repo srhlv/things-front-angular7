@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
 import { Store } from '@ngrx/store';
-import { ThingsState } from 'src/app/store';
-import { AuthSubmit } from '../../store/actions/auth.actions';
+import { User } from 'src/app/models/user';
+import { ThingsState, isAuthFailed } from 'src/app/store';
+import { LoginSubmit } from '../../store/actions/auth.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -11,12 +12,17 @@ import { AuthSubmit } from '../../store/actions/auth.actions';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private store: Store<ThingsState>) { }
+  authFailed$: Observable<boolean>
+
+  constructor(private store: Store<ThingsState>) { 
+    this.authFailed$ = store.select(isAuthFailed);
+    console.log('authFailed', this.authFailed$)
+  }
 
   ngOnInit() {
   }
 
   onClickSubmit(user: User) {
-    this.store.dispatch(new AuthSubmit(user));
+    this.store.dispatch(new LoginSubmit(user));
   }
 }

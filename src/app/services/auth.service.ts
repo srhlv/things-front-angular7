@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import SETTINGS from '../../app.settings';
 import { User } from '../models/user';
-import SETTINGS from '../../app.settings'
-import { Subscription, Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -11,21 +11,9 @@ export class AuthService {
 
   signin(user: User): Observable<User> {
     return this.http.post<User>(`${SETTINGS.API.URL}/auth/signin`, user)
-/*       .subscribe(
-        user => {
-          localStorage.token = user.token;
-        },
-        error => console.log(error)
-      ) */
   }
 
-  signup(user: User): Subscription {
+  signup(user: User): Observable<User> {
     return this.http.post<User>(`${SETTINGS.API.URL}/auth/signup`, user)
-      .subscribe(
-        user => {
-          localStorage.token = user.token;
-        },
-        error => console.log(error)
-      )
   }
 }

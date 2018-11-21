@@ -42,3 +42,6 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
       return state;
   }
 }
+
+export const isAuthFailed = (state: AuthState): boolean => state.isLoginFailed
+export const getUser = (state: AuthState): User => state.user
