@@ -6,17 +6,16 @@ import { LoginSubmit } from '../../store/actions/auth.actions';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  selector: 'app-auth-page',
+  templateUrl: './auth-pages.component.html',
+  styleUrls: ['./auth-pages.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class AuthPagesComponent implements OnInit {
 
   authFailed$: Observable<boolean>
 
   constructor(private store: Store<ThingsState>) { 
     this.authFailed$ = store.select(isAuthFailed);
-    console.log('authFailed', this.authFailed$)
   }
 
   ngOnInit() {

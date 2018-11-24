@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { AppRoutingModule } from '../../app-routing.module';
-
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarModule } from 'ng-sidebar';
+import { AppRoutingModule } from '../../app-routing.module';
 import { MediaPreviewDirective } from './media-preview.directive';
-import { AuthFormComponent } from './auth-form.component';
+
+
 
 @NgModule({
-  declarations: [MediaPreviewDirective, AuthFormComponent],
+  declarations: [MediaPreviewDirective],
   imports: [
     CommonModule,
 
@@ -17,17 +17,18 @@ import { AuthFormComponent } from './auth-form.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    SidebarModule.forRoot()
   ],
 
   exports: [
     CommonModule,
     MediaPreviewDirective,
-    AuthFormComponent,
 
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    SidebarModule
   ]
 })
 export class SharedModule { }

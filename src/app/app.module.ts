@@ -1,15 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { AuthPagesModule } from './containers/auth-pages/auth-pages.module';
 import { ItemsListPageModule } from './containers/items-list-page/items-list-page.module';
-import { CoreModule } from './services/core.module';
-import { LoginPageModule } from './containers/login-page/login-page.module';
 import { SharedModule } from './containers/shared/shared.module';
-import { SignupPageModule } from './containers/signup-page/signup-page.module';
+import { CoreModule } from './services/core.module';
 import { ThingsStoreModule } from './store/things-store.module';
+
+
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { ThingsStoreModule } from './store/things-store.module';
     ThingsStoreModule,
 
     ItemsListPageModule,
-    LoginPageModule,
-    SignupPageModule,
+    AuthPagesModule,
     SharedModule
   ],
   bootstrap: [AppComponent]
