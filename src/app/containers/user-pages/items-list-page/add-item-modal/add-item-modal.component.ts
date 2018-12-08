@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, Validators, FormControl, FormBuilder } from "@angular/forms";
-import * as fromStore from '../../../store'
 import { Store } from "@ngrx/store";
+import * as fromStore from '../../../../store';
 
 @Component({
     selector: 'add-item-modal',

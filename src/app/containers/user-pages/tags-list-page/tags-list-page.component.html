@@ -1,0 +1,30 @@
+<div class="row justify-content-end p-3 pt-4">
+  <div class="col">
+    <h3>Your items</h3>
+  </div>
+
+  <div class="col">
+      <button class="btn btn-outline-primary float-right" (click)="openAddItemModal()">Add Item</button>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 20%">Image</th>
+          <th scope="col" style="width: 35%">Title</th>
+          <th scope="col" style="width: 35%">Description</th>
+          <th scope="col" style="width: 5%"></th>
+          <th scope="col" style="width: 5%"></th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr item-row [item]="item" (deleteItem)="deleteItem($event)" *ngFor="let item of items$ | async"></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
